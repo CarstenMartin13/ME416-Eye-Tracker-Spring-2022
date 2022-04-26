@@ -50,7 +50,7 @@ void InitializeComponents()
   while (!Serial) {
     ;
   }
-  Serial1.println("Serial On");
+  Serial.println("Serial On");
 
   // checking for IMU-accelerometer connection
 //  if (!bno.begin())

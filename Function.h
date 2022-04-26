@@ -7,6 +7,7 @@
 #ifndef _FUNCTION_H
 #define _FUNCTION_H
 
+//row below was commented out causing issues with the XBOXONE and USB variables
 #include <XBOXONE.h>
 // Including the libraries for the IMU - acclerometer
 //#include <Adafruit_Sensor.h>
@@ -93,5 +94,9 @@ extern int backLeftDir;
 extern int backLeftPulse; //50 on PCB;
 // Declaring neck servo pins
 extern int neckServoPin;
+
+//Used to invert a matrix. We assume that the matrix is always going to be non singular. actual function in function.cpp
+BLA::Matrix<4,4> InvNonSingular(BLA::Matrix<4,4> in);
+
 
 #endif

@@ -63,9 +63,46 @@ void Robot::updateKinematicChain()
 {
 //  this->gLS = this->robotEyes.GetInverseLeftEyeTransformation() * this->robotNeck.GetInverseNeckTransformation() * this->robotShoulder.GetInverseShoulderTransformation();
 //  this->gRS = this->robotEyes.GetInverseRightEyeTransformation() * this->robotNeck.GetInverseNeckTransformation() * this->robotShoulder.GetInverseShoulderTransformation();
+//
+//  BLA::Matrix<4, 4> inverseRight = this->robotEyes.GetInverseLeftEyeTransformation();
+
+//  Serial.println("Inverse Right");
+//  for (int i =0; i< 4; i++)
+//  {
+//    for (int j = 0; j<4; j++)
+//    {
+//      Serial.print(inverseRight(i,j));
+//      Serial.print(" ");
+//    }
+//    Serial.println();
+//  }
+//
+//  BLA::Matrix<4, 4> inverseShoulder = this->robotShoulder.GetInverseShoulderTransformation();
+//
+//  Serial.println("Inverse Shoulder");
+//  for (int i =0; i< 4; i++)
+//  {
+//    for (int j = 0; j<4; j++)
+//    {
+//      Serial.print(inverseShoulder(i,j));
+//      Serial.print(" ");
+//    }
+//    Serial.println();
+//  }
   
   this->gLS = this->robotEyes.GetInverseLeftEyeTransformation() *  this->robotShoulder.GetInverseShoulderTransformation();
   this->gRS = this->robotEyes.GetInverseRightEyeTransformation() * this->robotShoulder.GetInverseShoulderTransformation();
+//
+//  Serial.println("gRS");
+//  for (int i =0; i< 4; i++)
+//  {
+//    for (int j = 0; j<4; j++)
+//    {
+//      Serial.print(gRS(i,j));
+//      Serial.print(" ");
+//    }
+//    Serial.println();
+//  }
 }
 
 /*
@@ -101,20 +138,18 @@ void Robot::setRobotPosition(char command)
 /*
          If Statement for the current bounds of the tablet screen
 */
-        if (goX > .15605 or goX < -.15605 or goY > .110 or goY < -.110)
-        {
-         SerialTerminal->println("Error, values entered outside of max bound");
-         SerialTerminal->println("The Maximum X Bound is -.15605 to .15605 and you entered: ",goX);
-         SerialTerminal->println("The Maximum Y Bound is -.110 to .110 and you entered: ",goY);
-         this->screenDotPos(0) = screenDotPos(0);
-         this->screenDotPos(2) = screendotPos(2);
-        }
-        
-        else
-        {
+//        if (goX > .15605 or goX < -.15605 or goY > .110 or goY < -.110)
+//        {
+//         SerialTerminal->println("Error, values entered outside of max bound");
+//         SerialTerminal->println("The Maximum X Bound is -.15605 to .15605 and you entered: ");
+//         SerialTerminal->println("The Maximum Y Bound is -.110 to .110 and you entered: ");
+//        }
+//        
+//        else
+//        {
           this->screenDotPos(0) = goX;
           this->screenDotPos(2) = goY;
-        }
+//        }
         
         break;
       }
@@ -184,6 +219,8 @@ void Robot::getRobotPosition(char command)
 void Robot::runRobotRunState()
 {
   char command = this->getSerialCommand();
+
+  this->updateKinematicChain();
 
   if (command == 'g') {
     char newCommand[1];

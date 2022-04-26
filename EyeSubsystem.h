@@ -40,10 +40,10 @@
    Z- vertical
 */
 enum EyeMotor {
-  rightZ = 1,
+  rightZ = 4,
   leftZ = 2,
   rightX = 3,
-  leftX = 4,
+  leftX = 1,
 };
 extern EyeMotor calibrationMotor;
 
@@ -69,6 +69,29 @@ class Eyes
     const uint8_t DXL_ID_PITCH_L = 2;         //ID NUMBER FOR LEFT PITCH SERVO
     const uint8_t DXL_ID_YAW_R = 3;           //ID NUMBER FOR RIGHT YAW SERVO
     const uint8_t DXL_ID_PITCH_R = 4;         //ID NUMBER FOR RIGHT PITCH SERVO
+
+    //tuning values, obtained from dynamixel wizard
+    //left horizontal
+    const uint16_t Move_speed = 382;
+    
+    const uint16_t LH_P = 36;
+    const uint16_t LH_I = 60;
+    const uint16_t LH_D = 12;
+
+    //left vertical
+    const uint16_t LV_P = 20;
+    const uint16_t LV_I = 30;
+    const uint16_t LV_D = 4;
+
+    //right vertical
+    const uint16_t RV_P = 20;
+    const uint16_t RV_I = 40;
+    const uint16_t RV_D = 4;
+
+    //right horizontal
+    const uint16_t RH_P = 42;
+    const uint16_t RH_I = 130;
+    const uint16_t RH_D = 4;
 
     const float DXL_PROTOCOL_VERSION = 1.0;
     uint16_t goalPosition = 0;

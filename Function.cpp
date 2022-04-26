@@ -50,3 +50,10 @@ int backLeftDir = 48;
 int backLeftPulse = 14; //50 on PCB; but 50 is unusable so connection has been by-passed.
 // Declaring neck servo pins
 int neckServoPin = 12;
+
+BLA::Matrix<4,4> InvNonSingular(BLA::Matrix<4,4> in)
+{
+  BLA::Matrix<4,4> out = in;
+  Invert(out);
+  return out;
+}
